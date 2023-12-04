@@ -1,7 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using ReTurnoWeb.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ReTurnoContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSql"));
+});
 
 var app = builder.Build();
 
