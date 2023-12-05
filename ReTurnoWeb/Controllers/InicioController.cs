@@ -20,6 +20,7 @@ namespace ReTurnoWeb.Controllers
         }
         public IActionResult Registrarse()
         {
+
             return View();
         }
 
