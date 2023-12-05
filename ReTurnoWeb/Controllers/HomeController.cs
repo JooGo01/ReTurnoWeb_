@@ -49,5 +49,9 @@ namespace ReTurnoWeb.Controllers
 
             return RedirectToAction("IniciarSesion", "Inicio");
         }
+
+        public IActionResult Turnos() {
+            return View();
+        }
     }
 }
