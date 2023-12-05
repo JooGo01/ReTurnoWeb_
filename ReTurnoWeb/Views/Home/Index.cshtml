@@ -3,6 +3,26 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenido/a @ViewData["nombre_usuario"]</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <header class="bg-primary text-white text-center py-5">
+        <h1>Returno</h1>
+        <p class="lead">Descubre tus turnos de manera fácil y eficiente</p>
+    </header>
+
+    <section class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>¿Qué es Returno?</h2>
+                <p class="lead">Returno es tu plataforma online para visualizar los turnos de cualquier lugar de manera rápida y sencilla. Ya no tendrás que preocuparte por perder tiempo buscando tus turnos. ¡Están todos aquí!</p>
+            </div>
+            <div class="col-md-6">
+                <img src="tu-imagen.jpg" alt="Returno" class="img-fluid">
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Turnos" asp-action="">Ver Mis Turnos</a>
+        </div>
+    </section>
+
 </div>
