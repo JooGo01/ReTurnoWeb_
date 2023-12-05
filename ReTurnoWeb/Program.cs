@@ -27,6 +27,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     opciones.ExpireTimeSpan = TimeSpan.FromMinutes(20);
 });
 
+// a todos los controladores con vista le pasamos la siguiente configuracion para que no guarde el cache
+builder.Services.AddControllersWithViews(opcion => {
+    opcion.Filters.Add(
+        new ResponseCacheAttribute
+        {
+            NoStore = true,
+            Location = ResponseCacheLocation.None,
+        }
+    );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
