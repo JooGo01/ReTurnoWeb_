@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using ReTurnoWeb.Models;
+using ReTurnoWeb.Servicios.Contrato;
+using ReTurnoWeb.Servicios.Implementacion;
+
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +15,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ReTurnoContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSql"));
+});
+
+//permite usar este servicio en cualquier controlador
+builder.Services.AddScoped<IUsuario, UsuarioService>();
+
+
+//autenticacion por cookies configuracion
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opciones => {
+    opciones.LoginPath = "/Inicio/IniciarSesion";
+    opciones.ExpireTimeSpan = TimeSpan.FromMinutes(20);
 });
 
 var app = builder.Build();
@@ -27,10 +42,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+//habilita la autenticacion por cookies 
+app.UseAuthentication();
+//
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Inicio}/{action=IniciarSesion}/{id?}");
 
 app.Run();
